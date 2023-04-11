@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kibana
+spec:
+  containers:
+  - name: sreerag
+    image: alpine
+    command: [ "/bin/bash", "-c" ]
+    args: [ "shuf -i 0-100 -n 1 >> /opt/number.out; " ]
+    volumeMounts:
+        - mountPath: /opt
+          name: data-volume
+  volumes:
+  - name : data-volume
+    hostPath: 
+       path: /data
+       type: Directory
+  nodeName: server
+
